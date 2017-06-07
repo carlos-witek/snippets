@@ -1,0 +1,7 @@
+/Users/carlos/git-public/snippets/jpa/src/test/java/org/carlos/jpa/composite_primary_key/EmbeddableCompositeTest.java
+/Users/carlos/git-public/snippets/jpa/src/test/java/org/carlos/jpa/composite_primary_key/SimpleCompositeTest.java
+/Users/carlos/git-public/snippets/jpa/src/test/java/org/carlos/jpa/multitable_entity/ExtensionsTest.java
+/Users/carlos/git-public/snippets/jpa/src/test/java/org/carlos/jpa/link_with_id_class/LinkTest.java
+/Users/carlos/git-public/snippets/jpa/src/test/java/org/carlos/jpa/composite_primary_key/EmbeddableIdCompositeTest.java
+/Users/carlos/git-public/snippets/jpa/src/test/java/org/carlos/jpa/index_on_concatenated_column/IndexInsertAndSelectTest.java
+/Users/carlos/git-public/snippets/jpa/src/test/java/org/carlos/jpa/reference_as_child/PersistanceTest.java

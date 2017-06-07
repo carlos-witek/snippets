@@ -1,0 +1,63 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="index_on_concatenated_column">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- entity autodetection disabled to avoid detecting entities from dependencies -->
+		<class>org.carlos.jpa.index_on_concatenated_column.ColumnsConcatenated</class>
+		<class>org.carlos.jpa.index_on_concatenated_column.ColumnsNotConcatenated</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<!-- connection pool -->
+			<property name="hibernate.c3p0.min_size" value="50" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.max_statements" value="100" />
+
+			<!-- schema -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+		</properties>
+	</persistence-unit>
+
+
+	<persistence-unit name="link_with_id_class">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- entity autodetection disabled to avoid detecting entities from dependencies -->
+		<class>org.carlos.jpa.link_with_id_class.Link</class>
+		<class>org.carlos.jpa.link_with_id_class.Reference</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<!-- connection pool -->
+			<property name="hibernate.c3p0.min_size" value="50" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.max_statements" value="100" />
+
+			<!-- schema -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="reference_as_child">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- entity autodetection disabled to avoid detecting entities from dependencies -->
+		<class>org.carlos.jpa.reference_as_child.TObject</class>
+		<class>org.carlos.jpa.reference_as_child.TObjectReference</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<!-- connection pool -->
+			<property name="hibernate.c3p0.min_size" value="50" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.max_statements" value="100" />
+
+			<!-- schema -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+		</properties>
+	</persistence-unit>
+</persistence>

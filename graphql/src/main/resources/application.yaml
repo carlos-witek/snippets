@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:hsqldb:mem:testdb
+    username: sa
+    password:
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    initialize: true
+
+management:
+    contextPath: /manage
+
+# Spring Boot Actuator end-points configuration
+endpoints:
+    autoconfig:
+        enabled: true
+    beans:
+        enabled: true
+    configprops:
+        enabled: false
+    dump:
+        enabled: true
+    env:
+        enabled: true
+    health:
+        enabled: true
+    info:
+        enabled: true
+    metrics:
+        enabled: true
+    mappings:
+        enabled: true
+    shutdown:
+        enabled: true
+    trace:
+        enabled: true
