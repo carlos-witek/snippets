@@ -1,7 +1,0 @@
-org/carlos/jpa/link_with_id_class/LinkTest.class
-org/carlos/jpa/multitable_entity/ExtensionsTest.class
-org/carlos/jpa/composite_primary_key/SimpleCompositeTest.class
-org/carlos/jpa/composite_primary_key/EmbeddableCompositeTest.class
-org/carlos/jpa/index_on_concatenated_column/IndexInsertAndSelectTest.class
-org/carlos/jpa/reference_as_child/PersistanceTest.class
-org/carlos/jpa/composite_primary_key/EmbeddableIdCompositeTest.class
