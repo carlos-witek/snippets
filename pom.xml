@@ -16,6 +16,7 @@
 		<module>evolution</module>
 		<module>graphql</module>
 		<module>guava</module>
+		<module>guice</module>
 		<module>hamcrest</module>
 		<module>hashing</module>
 		<module>jmx</module>
