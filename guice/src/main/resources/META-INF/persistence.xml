@@ -2,18 +2,40 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="authors_and_books">
+	<persistence-unit name="authors">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- entity autodetection disabled to avoid detecting entities from dependencies -->
 		<class>org.carlos.guice.persist_private_module.dao.entity.AuthorEntity</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<!-- connection pool -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:e96dffc8-46c9-4213-88fd-5c51f93dab3e;sql.syntax_mys=true;shutdown=true" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="hibernate.show_sql" value="false" />
+
+			<!-- schema -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="books">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- entity autodetection disabled to avoid detecting entities from dependencies -->
 		<class>org.carlos.guice.persist_private_module.dao.entity.BookEntity</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
 			<!-- connection pool -->
-			<property name="hibernate.c3p0.min_size" value="50" />
-			<property name="hibernate.c3p0.max_size" value="100" />
-			<property name="hibernate.c3p0.max_statements" value="100" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:e96dffc8-46c9-4213-88fd-5c51f93dab3e;sql.syntax_mys=true;shutdown=true" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="hibernate.show_sql" value="false" />
 
 			<!-- schema -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
