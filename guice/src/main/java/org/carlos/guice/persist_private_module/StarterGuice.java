@@ -21,8 +21,8 @@ public class StarterGuice {
 	public static void main( String[] args ) throws ClassNotFoundException {
 
 		List<Module> modules = ImmutableList.of(
-				new DaoModule<>( "authors", AuthorDao.class, AuthorDaoGuice.class ),
-				new DaoModule<>( "books", BookDao.class, BookDaoGuice.class ) );
+				new DaoModule( "authors" ).register( AuthorDao.class, AuthorDaoGuice.class ),
+				new DaoModule( "books" ).register( BookDao.class, BookDaoGuice.class ) );
 
 		Injector injector = Guice.createInjector( modules );
 		try {

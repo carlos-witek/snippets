@@ -21,8 +21,8 @@ public class StarterManual {
 	public static void main( String[] args ) {
 
 		List<Module> modules = ImmutableList.of(
-				new DaoModule<>( "authors", AuthorDao.class, AuthorDaoManual.class ),
-				new DaoModule<>( "books", BookDao.class, BookDaoManual.class ) );
+				new DaoModule( "authors" ).register( AuthorDao.class, AuthorDaoManual.class ),
+				new DaoModule( "books" ).register( BookDao.class, BookDaoManual.class ) );
 
 		Injector injector = Guice.createInjector( modules );
 		try {
