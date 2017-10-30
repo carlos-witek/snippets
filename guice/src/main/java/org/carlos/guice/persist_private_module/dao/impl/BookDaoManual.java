@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.transaction.Transactional;
 
 import org.carlos.guice.persist_private_module.dao.BookDao;
 import org.carlos.guice.persist_private_module.dao.entity.BookEntity;
@@ -40,11 +39,12 @@ public class BookDaoManual implements BookDao {
 	}
 
 	@Override
-	@Transactional
 	public void createBook( BookEntity book ) {
 		final EntityManager em = emf.createEntityManager();
 		try {
+			em.getTransaction().begin();
 			em.persist( book );
+			em.getTransaction().commit();
 		} finally {
 			em.close();
 		}

@@ -44,7 +44,9 @@ public class AuthorDaoManual implements AuthorDao {
 	public void createAuthor( AuthorEntity author ) {
 		final EntityManager em = emf.createEntityManager();
 		try {
+			em.getTransaction().begin();
 			em.persist( author );
+			em.getTransaction().commit();
 		} finally {
 			em.close();
 		}
