@@ -6,10 +6,11 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import org.carlos.guice.persist_private_module.dao.AuthorDao;
 import org.carlos.guice.persist_private_module.dao.entity.AuthorEntity;
+
+import com.google.inject.persist.Transactional;
 
 @Singleton
 public class AuthorDaoGuice implements AuthorDao {
