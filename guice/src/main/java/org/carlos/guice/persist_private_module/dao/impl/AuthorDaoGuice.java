@@ -1,37 +1,35 @@
 package org.carlos.guice.persist_private_module.dao.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.metamodel.EntityType;
 import javax.transaction.Transactional;
 
 import org.carlos.guice.persist_private_module.dao.AuthorDao;
 import org.carlos.guice.persist_private_module.dao.entity.AuthorEntity;
 
 @Singleton
-public class AuthorDaoImpl2 implements AuthorDao {
+public class AuthorDaoGuice implements AuthorDao {
 
-	private final Provider<EntityManagerFactory> emfs;
 	private final Provider<EntityManager> ems;
 
 	@Inject
-	public AuthorDaoImpl2( final EntityManagerFactoryProvider emfs, final Provider<EntityManager> ems ) {
-		this.emfs = emfs;
+	public AuthorDaoGuice( final Provider<EntityManager> ems ) {
 		this.ems = ems;
 	}
-	
 
 	@Override
+	@Transactional
 	public AuthorEntity getAuthor( Long id ) {
-		final EntityManager em = emf.createEntityManager();
-		try {
-			return em.find( AuthorEntity.class, id );
-		} finally {
-			em.close();
-		}
+		return ems.get().find( AuthorEntity.class, id );
+	}
+
+	@Override
+	public List<AuthorEntity> getAuthors() {
+		return ems.get().createQuery( "from AuthorEntity e", AuthorEntity.class ).getResultList();
 	}
 
 	@Override

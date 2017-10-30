@@ -1,29 +1,23 @@
 package org.carlos.guice.persist_private_module.dao.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
-import javax.inject.Provider;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.metamodel.EntityType;
-import javax.transaction.Transactional;
 
 import org.carlos.guice.persist_private_module.dao.AuthorDao;
 import org.carlos.guice.persist_private_module.dao.entity.AuthorEntity;
 
-public class AuthorDaoImpl implements AuthorDao {
+@Singleton
+public class AuthorDaoManual implements AuthorDao {
 
 	private final EntityManagerFactory emf;
-	private final Provider<EntityManager> ems;
 
 	@Inject
-	public AuthorDaoImpl( final EntityManagerFactory emf, final Provider<EntityManager> ems ) {
+	public AuthorDaoManual( final EntityManagerFactory emf ) {
 		this.emf = emf;
-		this.ems = ems;
-
-		final EntityType<AuthorEntity> entityType = emf.getMetamodel().entity( AuthorEntity.class );
-		StringBuilder countJPQLBuilder = new StringBuilder( "select count(*) from " )
-				.append( entityType.getName() );
-
 	}
 
 	@Override
@@ -37,9 +31,23 @@ public class AuthorDaoImpl implements AuthorDao {
 	}
 
 	@Override
-	@Transactional
+	public List<AuthorEntity> getAuthors() {
+		final EntityManager em = emf.createEntityManager();
+		try {
+			return em.createQuery( "from AuthorEntity", AuthorEntity.class ).getResultList();
+		} finally {
+			em.close();
+		}
+	}
+
+	@Override
 	public void createAuthor( AuthorEntity author ) {
-		ems.get().persist( author );
+		final EntityManager em = emf.createEntityManager();
+		try {
+			em.persist( author );
+		} finally {
+			em.close();
+		}
 	}
 
 }

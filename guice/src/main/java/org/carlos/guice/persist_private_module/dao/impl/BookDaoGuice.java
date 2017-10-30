@@ -1,33 +1,34 @@
 package org.carlos.guice.persist_private_module.dao.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 
 import org.carlos.guice.persist_private_module.dao.BookDao;
 import org.carlos.guice.persist_private_module.dao.entity.BookEntity;
 
-public class BookDaoImpl2 implements BookDao {
+public class BookDaoGuice implements BookDao {
 
-	private final EntityManagerFactory emf;
 	private final Provider<EntityManager> ems;
 
 	@Inject
-	public BookDaoImpl2( final EntityManagerFactory emf, final Provider<EntityManager> ems ) {
-		this.emf = emf;
+	public BookDaoGuice( final Provider<EntityManager> ems ) {
 		this.ems = ems;
 	}
 
 	@Override
+	@Transactional
 	public BookEntity getBook( Long id ) {
-		final EntityManager em = emf.createEntityManager();
-		try {
-			return em.find( BookEntity.class, id );
-		} finally {
-			em.close();
-		}
+		return ems.get().find( BookEntity.class, id );
+	}
+
+	@Override
+	@Transactional
+	public List<BookEntity> getBooks() {
+		return ems.get().createQuery( "from BookEntity e", BookEntity.class ).getResultList();
 	}
 
 	@Override
