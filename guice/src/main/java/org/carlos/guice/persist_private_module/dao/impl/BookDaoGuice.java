@@ -31,7 +31,7 @@ public class BookDaoGuice implements BookDao {
 	@Override
 	@Transactional
 	public List<BookEntity> getBooks() {
-		return ems.get().createQuery( "from BookEntity e", BookEntity.class ).getResultList();
+		return ems.get().createQuery( "from BookEntity", BookEntity.class ).getResultList();
 	}
 
 	@Override

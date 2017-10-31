@@ -31,7 +31,7 @@ public class AuthorDaoGuice implements AuthorDao {
 	@Override
 	@Transactional
 	public List<AuthorEntity> getAuthors() {
-		return ems.get().createQuery( "from AuthorEntity e", AuthorEntity.class ).getResultList();
+		return ems.get().createQuery( "from AuthorEntity", AuthorEntity.class ).getResultList();
 	}
 
 	@Override
