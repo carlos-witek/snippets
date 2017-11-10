@@ -21,7 +21,7 @@ public class AuthorDaoManual implements AuthorDao {
 	}
 
 	@Override
-	public AuthorEntity getAuthor( Long id ) {
+	public AuthorEntity getAuthor( final Long id ) {
 		final EntityManager em = emf.createEntityManager();
 		try {
 			return em.find( AuthorEntity.class, id );
@@ -41,7 +41,7 @@ public class AuthorDaoManual implements AuthorDao {
 	}
 
 	@Override
-	public void createAuthor( AuthorEntity author ) {
+	public void createAuthor( final AuthorEntity author ) {
 		final EntityManager em = emf.createEntityManager();
 		try {
 			em.getTransaction().begin();

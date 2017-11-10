@@ -21,7 +21,7 @@ public class BookDaoManual implements BookDao {
 	}
 
 	@Override
-	public BookEntity getBook( Long id ) {
+	public BookEntity getBook( final Long id ) {
 		final EntityManager em = emf.createEntityManager();
 		try {
 			return em.find( BookEntity.class, id );
@@ -41,7 +41,7 @@ public class BookDaoManual implements BookDao {
 	}
 
 	@Override
-	public void createBook( BookEntity book ) {
+	public void createBook( final BookEntity book ) {
 		final EntityManager em = emf.createEntityManager();
 		try {
 			em.getTransaction().begin();

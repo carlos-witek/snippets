@@ -24,7 +24,7 @@ public class AuthorDaoGuice implements AuthorDao {
 
 	@Override
 	@Transactional
-	public AuthorEntity getAuthor( Long id ) {
+	public AuthorEntity getAuthor( final Long id ) {
 		return ems.get().find( AuthorEntity.class, id );
 	}
 
@@ -36,7 +36,7 @@ public class AuthorDaoGuice implements AuthorDao {
 
 	@Override
 	@Transactional
-	public void createAuthor( AuthorEntity author ) {
+	public void createAuthor( final AuthorEntity author ) {
 		ems.get().persist( author );
 	}
 

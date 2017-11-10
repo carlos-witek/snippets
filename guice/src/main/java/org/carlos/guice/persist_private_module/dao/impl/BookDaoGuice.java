@@ -24,7 +24,7 @@ public class BookDaoGuice implements BookDao {
 
 	@Override
 	@Transactional
-	public BookEntity getBook( Long id ) {
+	public BookEntity getBook( final Long id ) {
 		return ems.get().find( BookEntity.class, id );
 	}
 
@@ -36,7 +36,7 @@ public class BookDaoGuice implements BookDao {
 
 	@Override
 	@Transactional
-	public void createBook( BookEntity book ) {
+	public void createBook( final BookEntity book ) {
 		ems.get().persist( book );
 	}
 
