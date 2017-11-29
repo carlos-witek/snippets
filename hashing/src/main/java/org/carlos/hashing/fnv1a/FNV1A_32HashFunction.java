@@ -46,6 +46,13 @@ public class FNV1A_32HashFunction implements HashFunction {
 			}
 
 			@Override
+			public Hasher putBytes( ByteBuffer bytes ) {
+				while ( bytes.hasRemaining() )
+					hash = ( hash ^ bytes.get() ) * FNV_PRIME;
+				return this;
+			}
+
+			@Override
 			public Hasher putShort( short s ) {
 				hash = ( hash ^ (byte) ( s ) ) * FNV_PRIME;
 				hash = ( hash ^ (byte) ( s >>> 8 ) ) * FNV_PRIME;
@@ -99,8 +106,8 @@ public class FNV1A_32HashFunction implements HashFunction {
 
 			@Override
 			public Hasher putUnencodedChars( CharSequence charSequence ) {
-				ByteBuffer buffer = ByteBuffer.allocate( Chars.BYTES ).order(
-						ByteOrder.LITTLE_ENDIAN );
+				ByteBuffer buffer = ByteBuffer.allocate( Chars.BYTES )
+						.order( ByteOrder.LITTLE_ENDIAN );
 				for ( int index = 0, length = charSequence.length(); index < length; index++ )
 					buffer.putChar( charSequence.charAt( index ) );
 				return putBytes( buffer.array() );
@@ -121,6 +128,7 @@ public class FNV1A_32HashFunction implements HashFunction {
 			public HashCode hash() {
 				return HashCode.fromInt( (int) hash );
 			}
+
 		};
 	}
 
@@ -142,6 +150,11 @@ public class FNV1A_32HashFunction implements HashFunction {
 	@Override
 	public HashCode hashBytes( byte[] input, int off, int len ) {
 		return newHasher().putBytes( input, off, len ).hash();
+	}
+
+	@Override
+	public HashCode hashBytes( ByteBuffer input ) {
+		return newHasher().putBytes( input ).hash();
 	}
 
 	@Override
