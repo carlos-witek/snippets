@@ -123,8 +123,6 @@ public class MatcherBuilder<T> {
 			return hasProperty( propertyName, equalTo( expected ) );
 		} else if ( expected instanceof String ) {
 			return hasProperty( propertyName, equalTo( expected ) );
-//		} else if ( expected instanceof Comparable<?> ) {
-//			return hasProperty( propertyName, comparesEqualToMatcher( expected ) );
 		} else {
 			return hasProperty( propertyName, samePropertyValuesAs( expected ).build() );
 		}
@@ -134,7 +132,6 @@ public class MatcherBuilder<T> {
 	private Matcher<T> nullValueMatcher() {
 		return (Matcher<T>) Matchers.nullValue();
 	}
-
 
 	public MatcherBuilder<T> hasProperty( String propertyName, Matcher<?> valueMatcher ) {
 		Preconditions.checkNotNull( propertyName, "propertyName is null" );
